@@ -34,6 +34,7 @@ func main() {
 
 	cat := &Cat{}
 	cat.say()
+	cat.eat()
 
 	var peo People = &Student{}
 	think := "sb"

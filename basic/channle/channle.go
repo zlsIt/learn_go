@@ -2,12 +2,15 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
+	"sync"
 )
 
 func main() {
 
 	//case1()
-	case2()
+	//case2()
+	case3()
 }
 
 func case1() {
@@ -48,9 +51,57 @@ func case2() {
 	}
 }
 
+type Job struct {
+	Id      int
+	RandNum int
+}
+
+type Result struct {
+	job *Job
+	sum int
+}
+
 //需求：
 //计算一个数字的各个位数之和，例如数字123，结果为1+2+3=6
 //随机生成数字进行计算
 func case3() {
-
+	var wg sync.WaitGroup
+	jobCh := make(chan *Job, 128)
+	resCh := make(chan *Result, 128)
+	for i := 0; i < 64; i++ {
+		go func(jobCh chan *Job, resCh chan *Result) {
+			for job := range jobCh {
+				var sum int
+				randNum := job.RandNum
+				for randNum != 0 {
+					tmp := randNum % 10
+					sum += tmp
+					randNum /= 10
+				}
+				res := &Result{
+					job: job,
+					sum: sum,
+				}
+				resCh <- res
+			}
+		}(jobCh, resCh)
+	}
+	go func(resCh chan *Result) {
+		for res := range resCh {
+			fmt.Printf("job id:%v randnum:%v result:%d\n", res.job.Id,
+				res.job.RandNum, res.sum)
+			wg.Done()
+		}
+	}(resCh)
+	var id int
+	for id < 100 {
+		wg.Add(1)
+		id++
+		job := &Job{
+			Id:      id,
+			RandNum: rand.Int(),
+		}
+		jobCh <- job
+	}
+	wg.Wait()
 }
