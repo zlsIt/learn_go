@@ -53,7 +53,6 @@ func del() {
 	if err != nil {
 		fmt.Println("rows failed, ", err)
 	}
-
 	fmt.Println("delete succ: ", row)
 }
 
