@@ -22,11 +22,11 @@ const AUTH_HEADER_VALUE = "WSSE realm=\"SDP\",profile=\"UsernameToken\",type=\"A
 
 func main() {
 	//必填,请参考"开发准备"获取如下数据,替换为实际值
-	apiAddress := "https://smsapi.cn-north-4.myhuaweicloud.com:443/sms/batchSendSms/v1" //APP接入地址(在控制台"应用管理"页面获取)+接口访问URI
-	appKey := "Kf0xlK9D6bZAN9Q5rc8sMj3D11Uf"                                            //APP_Key
-	appSecret := "EHIJWz6oRX7bmAN7IwesvAVCh7hs"                                         //APP_Secret
-	sender := "8821110927380"                                                           //国内短信签名通道号或国际/港澳台短信通道号
-	templateId := "06ca8a50143644bfa1a0f7b278eac95f"                                    //模板ID
+	apiAddress := "" //APP接入地址(在控制台"应用管理"页面获取)+接口访问URI
+	appKey := ""     //APP_Key
+	appSecret := ""  //APP_Secret
+	sender := ""     //国内短信签名通道号或国际/港澳台短信通道号
+	templateId := "" //模板ID
 
 	//条件必填,国内短信关注,当templateId指定的模板类型为通用模板时生效且必填,必须是已审核通过的,与模板类型一致的签名名称
 	//国际/港澳台短信不用关注该参数
