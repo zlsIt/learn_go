@@ -1,6 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math/rand"
+	"time"
+)
 
 func main() {
 	var a int
@@ -10,4 +14,11 @@ func main() {
 	// 简写
 	d := "hello world"
 	fmt.Println(d)
+	case1()
+}
+
+func case1() {
+	rnd := rand.New(rand.NewSource(time.Now().UnixNano()))
+	vcode := fmt.Sprintf("%06v", rnd.Int31n(1000000))
+	fmt.Println(vcode)
 }

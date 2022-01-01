@@ -26,6 +26,10 @@ func main() {
 	case2()
 	fmt.Println("------------------------------------")
 	case3()
+	fmt.Println("----------------case4---------------------")
+	case4()
+	fmt.Println("----------------case5----------------------")
+	case5()
 }
 
 func case1() {
@@ -57,4 +61,33 @@ func case3() {
 	fmt.Println(s2, len(s2), cap(s2))
 	s3 := append(s2, 100, 200, 300)
 	fmt.Println(s3, len(s3), cap(s3))
+}
+
+func case4() {
+	arrayA := [2]int{100, 200}
+	var arrayB [2]int
+
+	arrayB = arrayA
+
+	fmt.Printf("arrayA : %p, %v\n", &arrayA, arrayB)
+	fmt.Printf("arrayB : %p, %v\n", &arrayB, arrayA)
+
+	testArray(&arrayA)
+}
+
+func testArray(x *[2]int) {
+	fmt.Printf("func Array : %p , %v\n", x, x)
+}
+
+func case5() {
+	arrayA := []int{100, 200}
+	testArrayPoint(&arrayA)
+	arrayB := arrayA[:]
+	testArrayPoint(&arrayB)
+	fmt.Printf("arrayA : %p , %v\n", &arrayA, arrayA)
+}
+
+func testArrayPoint(x *[]int) {
+	fmt.Printf("func Array : %p , %v\n", x, *x)
+	(*x)[1] += 100
 }

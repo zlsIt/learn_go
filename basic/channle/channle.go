@@ -10,7 +10,14 @@ func main() {
 
 	//case1()
 	//case2()
-	case3()
+	//case3()
+	case4()
+}
+
+func case4() {
+	stopCh := make(chan struct{})
+	fmt.Println(stopCh)
+	<-stopCh
 }
 
 func case1() {
